@@ -1,0 +1,8 @@
+{
+  "block.gcm.pickaxe_block": "镐子方块",
+  "effect.gcm.let_other_see_you": "引人注目",
+  "item.minecraft.tipped_arrow.effect.let_other_see_you": "引人注目之箭",
+  "item.minecraft.potion.effect.let_other_see_you": "引人注目药水",
+  "item.minecraft.splash_potion.effect.let_other_see_you": "喷溅型引人注目药水",
+  "item.minecraft.lingering_potion.effect.let_other_see_you": "滞留型引人注目药水"
+}

@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "mod.gcm.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "BrewingMixin",
+    "TNTAndFireChargeMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

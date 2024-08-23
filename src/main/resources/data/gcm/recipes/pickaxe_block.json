@@ -1,0 +1,18 @@
+{
+  "type": "crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "CP"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:cobblestone"
+    },
+    "P": {
+      "tag": "minecraft:pickaxes"
+    }
+  },
+  "result": {
+    "item": "gcm:pickaxe_block"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "age=0": { "model": "gcm:block/pepper0" },
+    "age=1": { "model": "gcm:block/pepper1" },
+    "age=2": { "model": "gcm:block/pepper2" },
+    "age=3": { "model": "gcm:block/pepper3" }
+  }
+}

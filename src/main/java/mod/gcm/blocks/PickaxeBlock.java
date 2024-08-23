@@ -3,6 +3,8 @@ package mod.gcm.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
@@ -18,7 +20,15 @@ public class PickaxeBlock extends Block {
             Block block = world.getBlockState(pos.offset(direction)).getBlock();
             if (block == Blocks.GLASS) {
                 BlockPos target = pos.offset(direction.getOpposite());
-                world.breakBlock(target, true);
+                Block block1 = world.getBlockState(target).getBlock();
+                if (block1.getHardness() == -1) {
+                    for (PlayerEntity player: world.getPlayers()) {
+                        player.sendMessage(Text.translatable("error.block.gcm.pickaxe_block.cant_mine",
+                                target.getX(), target.getY(), target.getZ(), block1.getName().getString()));
+                    }
+                } else {
+                    world.breakBlock(target, true);
+                }
             }
         }
     }

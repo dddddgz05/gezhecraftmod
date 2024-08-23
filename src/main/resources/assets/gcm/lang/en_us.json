@@ -1,8 +1,11 @@
 {
+  "itemGroup.gcm.group": "GCM Items",
+  "death.attack.spicy": "%1$s was spicy to death",
+  "item.gcm.pepper": "Pepper",
+  "item.minecraft.tipped_arrow.effect.let_other_see_you": "Arrow of Let Other See You",
   "block.gcm.pickaxe_block": "Pickaxe Block",
   "enchantment.gcm.gravity_edit": "No Gravity",
   "effect.gcm.let_other_see_you": "Let Other See You",
-  "item.minecraft.tipped_arrow.effect.let_other_see_you": "Arrow of Let Other See You",
   "item.minecraft.potion.effect.let_other_see_you": "Potion of Let Other See You",
   "item.minecraft.splash_potion.effect.let_other_see_you": "Splash Potion of Let Other See You",
   "item.minecraft.lingering_potion.effect.let_other_see_you": "Lingering Potion of Let Other See You",
@@ -11,5 +14,5 @@
   "item.minecraft.potion.effect.redstone_master": "Potion of Redstone Master",
   "item.minecraft.splash_potion.effect.redstone_master": "Splash Potion of Redstone Master",
   "item.minecraft.lingering_potion.effect.redstone_master": "Lingering Potion of Redstone Master",
-  "error.block.gcm.pickaxe_block.cant_mine": "Pickaxe Block At [%d,%d,%d] Cannot Mine Now!"
+  "error.block.gcm.pickaxe_block.cant_mine": "<Pickaxe Block At [%d,%d,%d]> I cannot mine %s."
 }

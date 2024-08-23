@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
           "mod.gcm.Main"
+		],
+		"client": [
+			"mod.gcm.Client"
 		]
 	},
 	"mixins": [

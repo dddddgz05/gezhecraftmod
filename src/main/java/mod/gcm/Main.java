@@ -4,13 +4,16 @@ import mod.gcm.blocks.CropBlockAge3;
 import mod.gcm.blocks.PickaxeBlock;
 import mod.gcm.effects.LetOtherSeeYouStatusEffect;
 import mod.gcm.effects.SpicyStatusEffect;
+import mod.gcm.enchantments.SimpleEnchantment;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentTarget;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.damage.DamageType;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -42,6 +45,9 @@ public class Main implements ModInitializer {
 			new AliasedBlockItem(PEPPER_BLOCK, new FabricItemSettings().food(new FoodComponent.Builder()
 					.saturationModifier(3).hunger(4).statusEffect(new StatusEffectInstance(SPICY_EFFECT, 1200), 0.9f)
 					.build()));
+	public static Enchantment EXPLOSIVE =
+			new SimpleEnchantment(Enchantment.Rarity.UNCOMMON, EnchantmentTarget.WEAPON,
+					new EquipmentSlot[]{EquipmentSlot.MAINHAND});
 
 	public static ItemGroup GROUP = FabricItemGroup.builder().icon(Items.SOUL_TORCH::getDefaultStack)
 			.displayName(Text.translatable("itemGroup.gcm.group"))
@@ -62,6 +68,7 @@ public class Main implements ModInitializer {
 		register(ITEM, "gcm:pickaxe_block", new BlockItem(PICKAXE_BLOCK, new FabricItemSettings()));
 		// 实体（未来可能不会有了）
 		// 附魔
+		register(ENCHANTMENT, "gcm:explosive", EXPLOSIVE);
 		// 状态效果/药水
 		register(STATUS_EFFECT, "gcm:let_other_see_you", LET_OTHER_SEE_YOU_EFFECT);
 		register(POTION, "gcm:let_other_see_you", LET_OTHER_SEE_YOU_POTION);

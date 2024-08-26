@@ -4,6 +4,9 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BrewingMixin",
+    "EnchantmentMergeMixin",
+    "ExplosiveMixin",
+    "InfiniteMixin",
     "TNTAndFireChargeMixin"
   ],
   "injectors": {

@@ -23,7 +23,7 @@ public class PickaxeBlock extends Block {
                 Block block1 = world.getBlockState(target).getBlock();
                 if (block1.getHardness() == -1) {
                     for (PlayerEntity player: world.getPlayers()) {
-                        player.sendMessage(Text.translatable("error.block.gcm.pickaxe_block.cant_mine",
+                        player.sendMessage(Text.translatable("message.block.gcm.pickaxe_block.cannot_mine",
                                 target.getX(), target.getY(), target.getZ(), block1.getName().getString()));
                     }
                 } else {

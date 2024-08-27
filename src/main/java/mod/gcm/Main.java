@@ -48,6 +48,9 @@ public class Main implements ModInitializer {
 	public static Enchantment EXPLOSIVE =
 			new SimpleEnchantment(Enchantment.Rarity.UNCOMMON, EnchantmentTarget.WEAPON,
 					new EquipmentSlot[]{EquipmentSlot.MAINHAND});
+	public static Enchantment CANNOT_SELECT =
+			new SimpleEnchantment(Enchantment.Rarity.UNCOMMON, EnchantmentTarget.WEAPON,
+					new EquipmentSlot[]{EquipmentSlot.MAINHAND});
 
 	public static ItemGroup GROUP = FabricItemGroup.builder().icon(Items.SOUL_TORCH::getDefaultStack)
 			.displayName(Text.translatable("itemGroup.gcm.group"))
@@ -69,6 +72,7 @@ public class Main implements ModInitializer {
 		// 实体（未来可能不会有了）
 		// 附魔
 		register(ENCHANTMENT, "gcm:explosive", EXPLOSIVE);
+		register(ENCHANTMENT, "gcm:cannot_select", CANNOT_SELECT);
 		// 状态效果/药水
 		register(STATUS_EFFECT, "gcm:let_other_see_you", LET_OTHER_SEE_YOU_EFFECT);
 		register(POTION, "gcm:let_other_see_you", LET_OTHER_SEE_YOU_POTION);

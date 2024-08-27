@@ -14,7 +14,6 @@ public class InfiniteMixin {
     public void decrement(int amount, CallbackInfo ci) {
         if (EnchantmentHelper.getLevel(Enchantments.INFINITY, (ItemStack)(Object)this) > 0) {
             ci.cancel();
-            System.out.println("114514");
         }
     }
 }

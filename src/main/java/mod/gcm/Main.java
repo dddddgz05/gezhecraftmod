@@ -2,9 +2,9 @@ package mod.gcm;
 
 import mod.gcm.blocks.CropBlockAge3;
 import mod.gcm.blocks.PickaxeBlock;
-import mod.gcm.effects.LetOtherSeeYouStatusEffect;
-import mod.gcm.effects.SpicyStatusEffect;
-import mod.gcm.enchantments.SimpleEnchantment;
+import mod.gcm.commands.*;
+import mod.gcm.effects.*;
+import mod.gcm.enchantments.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -45,9 +45,6 @@ public class Main implements ModInitializer {
 			new AliasedBlockItem(PEPPER_BLOCK, new FabricItemSettings().food(new FoodComponent.Builder()
 					.saturationModifier(3).hunger(4).statusEffect(new StatusEffectInstance(SPICY_EFFECT, 1200), 0.9f)
 					.build()));
-	public static Enchantment EXPLOSIVE =
-			new SimpleEnchantment(Enchantment.Rarity.UNCOMMON, EnchantmentTarget.WEAPON,
-					new EquipmentSlot[]{EquipmentSlot.MAINHAND});
 	public static Enchantment CANNOT_SELECT =
 			new SimpleEnchantment(Enchantment.Rarity.UNCOMMON, EnchantmentTarget.WEAPON,
 					new EquipmentSlot[]{EquipmentSlot.MAINHAND});
@@ -61,6 +58,11 @@ public class Main implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		// 命令
+		TeleportToDeathLocation.register();
+		GetEnchantments.register();
+		KeepInventorySwitch.register();
+		GetNbt.register();
 		// 物品
 		register(ITEM, "gcm:pepper", PEPPER_ITEM);
 		// 物品组
@@ -71,7 +73,6 @@ public class Main implements ModInitializer {
 		register(ITEM, "gcm:pickaxe_block", new BlockItem(PICKAXE_BLOCK, new FabricItemSettings()));
 		// 实体（未来可能不会有了）
 		// 附魔
-		register(ENCHANTMENT, "gcm:explosive", EXPLOSIVE);
 		register(ENCHANTMENT, "gcm:cannot_select", CANNOT_SELECT);
 		// 状态效果/药水
 		register(STATUS_EFFECT, "gcm:let_other_see_you", LET_OTHER_SEE_YOU_EFFECT);

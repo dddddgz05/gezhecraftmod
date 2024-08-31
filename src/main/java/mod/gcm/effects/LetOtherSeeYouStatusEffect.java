@@ -23,11 +23,9 @@ public class LetOtherSeeYouStatusEffect extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        amplifier = (amplifier + 1) * 10;
+        amplifier += 1;
         World world = entity.getWorld();
-        Vec3d entityPos = entity.getPos();
-        Box box = new Box(entityPos.x - amplifier, entityPos.y - amplifier, entityPos.z - amplifier,
-                          entityPos.x + amplifier, entityPos.y + amplifier, entityPos.z + amplifier);
+        Box box = Box.of(entity.getPos(), amplifier * 10, amplifier * 10, amplifier * 10);
         List<Entity> entities = world.getOtherEntities(entity, box, entity1 -> entity1 instanceof LivingEntity);
         for (Entity entity1 : entities) {
             entity1.lookAt(EntityAnchorArgumentType.EntityAnchor.EYES, entity.getEyePos());

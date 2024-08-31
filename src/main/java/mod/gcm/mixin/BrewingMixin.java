@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BrewingRecipeRegistry.class)
-public class BrewingMixin {
+public abstract class BrewingMixin {
     @Inject(method = "registerDefaults", at = @At("HEAD"))
     private static void registerDefaults(CallbackInfo ci) {
         BrewingRecipeRegistry.registerPotionRecipe(Potions.WATER, Items.ENDER_EYE, Main.LET_OTHER_SEE_YOU_POTION);

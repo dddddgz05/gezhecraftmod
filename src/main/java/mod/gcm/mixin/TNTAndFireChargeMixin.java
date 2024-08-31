@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Item.class)
-public class TNTAndFireChargeMixin {
+public abstract class TNTAndFireChargeMixin {
     @Inject(method = "use", at = @At("HEAD"))
     public void use(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
         boolean creativeMode = user.getAbilities().creativeMode;

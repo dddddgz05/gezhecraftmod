@@ -59,7 +59,7 @@ public abstract class StackTickMixin {
             PlayerInventory inventory = player.getInventory();
             int targetSlot = slot;
             for (int i = 0; i < 9; ++i) {
-                if (i != slot && inventory.getStack(i).isEmpty()) {
+                if (i != slot && (inventory.getStack(i).isEmpty() || inventory.getStack(i) == stack)) {
                     targetSlot = i;
                     break;
                 }

@@ -4,7 +4,9 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BrewingMixin",
+    "BucketItemMixin",
     "EnchantmentMergeMixin",
+    "DisplayEntityTickMixin",
     "StackTickMixin",
     "TNTAndFireChargeMixin"
   ],

@@ -41,6 +41,9 @@ public abstract class EnchantmentMergeMixin {
                     NbtCompound nbt = enchantments.getCompound(i);
                     Enchantment enchantment = Registries.ENCHANTMENT.get(Identifier.tryParse(nbt.getString("id")));
                     if (enchantment != null)
+//                        还在犹豫要不要改
+//                        if (getWorld().random.nextFloat() > 0.5f) {
+//                        if (getWorld().random.nextFloat() > 0.2f) {
                         if (getWorld().random.nextFloat() > 0.1f) {
                             Map<Enchantment, Integer> map = new HashMap<>();
                             map.put(enchantment, (int) nbt.getShort("lvl"));

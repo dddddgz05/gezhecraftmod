@@ -13,9 +13,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.damage.DamageType;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.*;
 import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
 import net.minecraft.registry.RegistryKey;
@@ -23,9 +21,9 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import static net.minecraft.enchantment.Enchantment.Rarity.UNCOMMON;
-import static net.minecraft.enchantment.EnchantmentTarget.WEAPON;
-import static net.minecraft.entity.EquipmentSlot.MAINHAND;
+import static net.minecraft.enchantment.Enchantment.Rarity.*;
+import static net.minecraft.enchantment.EnchantmentTarget.*;
+import static net.minecraft.entity.EquipmentSlot.*;
 import static net.minecraft.registry.Registries.*;
 import static net.minecraft.registry.Registry.register;
 
@@ -46,7 +44,8 @@ public class Main implements ModInitializer {
 					.saturationModifier(3).hunger(4).statusEffect(new StatusEffectInstance(SPICY_EFFECT, 1200), 0.9f)
 					.build()));
 	public static Enchantment CANNOT_SELECT = new SimpleEnchantment(UNCOMMON, WEAPON, new EquipmentSlot[]{MAINHAND});
-	public static Enchantment KILL_ALL = new KillAllEnchantment(UNCOMMON, WEAPON, new EquipmentSlot[]{MAINHAND});
+	public static Enchantment ATTACK_ALL = new AttackAllEnchantment(UNCOMMON, WEAPON, new EquipmentSlot[]{MAINHAND});
+	public static Enchantment FAKE_BLOCK = new SimpleEnchantment(UNCOMMON, WEAPON, new EquipmentSlot[]{MAINHAND});
 //	public static final ScreenHandlerType<BetterFurnaceHandler> BETTER_FURNACE_HANDLER;
 //	static {
 //		BETTER_FURNACE_HANDLER = ScreenHandlerRegistry.registerSimple(Identifier.of("gcm", "better_furnace"), BetterFurnaceHandler::new);
@@ -77,10 +76,11 @@ public class Main implements ModInitializer {
 //		register(BLOCK, "gcm:better_furnace", BETTER_FURNACE);
 //		register(ITEM, "gcm:better_furnace", new BlockItem(BETTER_FURNACE, new FabricItemSettings()));
 //		register(BLOCK_ENTITY_TYPE, "gcm:better_furnace", BETTER_FURNACE_TYPE);
-		// 实体类型（喵的我还是没看懂怎么写实体。。下个版本用GeckoLib凑合着写一个）
+		// 实体类型（不知道多少个版本之后用GeckoLib凑合着写一个）
 		// 附魔
 		register(ENCHANTMENT, "gcm:cannot_select", CANNOT_SELECT);
-		register(ENCHANTMENT, "gcm:kill_all", KILL_ALL);
+		register(ENCHANTMENT, "gcm:attack_all", ATTACK_ALL);
+		register(ENCHANTMENT, "gcm:fake_block", FAKE_BLOCK);
 		// 状态效果/药水
 		register(STATUS_EFFECT, "gcm:let_other_see_you", LET_OTHER_SEE_YOU_EFFECT);
 		register(POTION, "gcm:let_other_see_you", LET_OTHER_SEE_YOU_POTION);

@@ -14,7 +14,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
@@ -23,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static net.minecraft.entity.decoration.DisplayEntity.*;
+import static net.minecraft.entity.decoration.DisplayEntity.BlockDisplayEntity;
 
 @Mixin(Item.class)
 public abstract class BucketItemMixin {
@@ -44,7 +43,7 @@ public abstract class BucketItemMixin {
     public void useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
         ItemStack stack = context.getStack();
         if (stack.getItem() == Items.BUCKET && EnchantmentHelper.getLevel(Main.FAKE_BLOCK, stack) > 0) {
-            NbtCompound nbt = stack.hasNbt() ? stack.getNbt() : new NbtCompound();
+            NbtCompound nbt = stack.getOrCreateNbt();
             World world = context.getWorld();
             if (nbt.contains("Block")) {
                 Vec3i vec3i = context.getBlockPos().offset(context.getSide());

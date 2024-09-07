@@ -46,6 +46,7 @@ public class Main implements ModInitializer {
 	public static Enchantment CANNOT_SELECT = new SimpleEnchantment(UNCOMMON, WEAPON, new EquipmentSlot[]{MAINHAND});
 	public static Enchantment ATTACK_ALL = new AttackAllEnchantment(UNCOMMON, WEAPON, new EquipmentSlot[]{MAINHAND});
 	public static Enchantment FAKE_BLOCK = new SimpleEnchantment(UNCOMMON, WEAPON, new EquipmentSlot[]{MAINHAND});
+	public static Enchantment TNT = new SimpleEnchantment(UNCOMMON, WEAPON, new EquipmentSlot[]{MAINHAND});
 //	public static final ScreenHandlerType<BetterFurnaceHandler> BETTER_FURNACE_HANDLER;
 //	static {
 //		BETTER_FURNACE_HANDLER = ScreenHandlerRegistry.registerSimple(Identifier.of("gcm", "better_furnace"), BetterFurnaceHandler::new);
@@ -81,6 +82,7 @@ public class Main implements ModInitializer {
 		register(ENCHANTMENT, "gcm:cannot_select", CANNOT_SELECT);
 		register(ENCHANTMENT, "gcm:attack_all", ATTACK_ALL);
 		register(ENCHANTMENT, "gcm:fake_block", FAKE_BLOCK);
+		register(ENCHANTMENT, "gcm:tnt", TNT);
 		// 状态效果/药水
 		register(STATUS_EFFECT, "gcm:let_other_see_you", LET_OTHER_SEE_YOU_EFFECT);
 		register(POTION, "gcm:let_other_see_you", LET_OTHER_SEE_YOU_POTION);

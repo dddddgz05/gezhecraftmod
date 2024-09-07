@@ -10,6 +10,8 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.util.function.Supplier;
+
 import static net.minecraft.server.command.CommandManager.literal;
 
 public class GetEnchantments {
@@ -32,14 +34,11 @@ public class GetEnchantments {
             Identifier enchantment = Identifier.tryParse(nbt.getString("id"));
             if (enchantment != null) {
                 String string = "enchantment." + enchantment.getNamespace() + "." + enchantment.getPath();
-                int level = nbt.getShort("lvl");
-                if (level < 10) {
-                    player.sendMessage(Text.of(i + 1 + "." + Text.translatable(string).getString() + " " +
-                            Text.translatable("enchantment.level." + level)));
-                } else {
-                    player.sendMessage(Text.of(i + 1 + "." + Text.translatable(string).getString() + " " +
-                            level));
-                }
+                // 变量名很好啊，不是吗（）
+                StringBuilder sb = new StringBuilder();
+                sb.append(i + 1).append(". ").append(Text.translatable(string).getString()).append(" ");
+                sb.append(Text.translatable("enchantment.level." + nbt.getShort("lvl")).getString());
+                context.getSource().sendFeedback(() -> Text.of(sb.toString()), false);
             }
         }
         return 1;

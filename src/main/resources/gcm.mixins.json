@@ -8,7 +8,7 @@
     "EnchantmentMergeMixin",
     "DisplayEntityTickMixin",
     "StackTickMixin",
-    "TNTAndFireChargeMixin"
+    "TNTMixin"
   ],
   "injectors": {
     "defaultRequire": 1

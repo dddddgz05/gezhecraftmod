@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.text.Text;
 
 public class BetterFurnaceHandler extends ScreenHandler {
     public Inventory inventory;
@@ -57,22 +56,28 @@ public class BetterFurnaceHandler extends ScreenHandler {
         if (slot2.hasStack()) {
             ItemStack itemStack2 = slot2.getStack();
             itemStack = itemStack2.copy();
-            if (slot == 0) {
-                if (!this.insertItem(itemStack2, 10, 46, true)) {
+            if (slot == 2) {
+                if (!this.insertItem(itemStack2, 3, 39, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot2.onQuickTransfer(itemStack2, itemStack);
-            } else if (slot >= 10 && slot < 46) {
-                if (!this.insertItem(itemStack2, 1, 10, false)) {
-                    if (slot < 37) {
-                        if (!this.insertItem(itemStack2, 37, 46, false)) {
-                            return ItemStack.EMPTY;
-                        }
-                    } else if (!this.insertItem(itemStack2, 10, 37, false)) {
+            } else if (slot != 1 && slot != 0) {
+                /* if (this.isSmeltable(itemStack2)) {
+                    if (!this.insertItem(itemStack2, 0, 1, false)) {
                         return ItemStack.EMPTY;
                     }
+                } else if (this.isFuel(itemStack2)) {
+                    if (!this.insertItem(itemStack2, 1, 2, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else */ if (slot >= 3 && slot < 30) {
+                    if (!this.insertItem(itemStack2, 30, 39, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (slot >= 30 && slot < 39 && !this.insertItem(itemStack2, 3, 30, false)) {
+                    return ItemStack.EMPTY;
                 }
-            } else if (!this.insertItem(itemStack2, 10, 46, false)) {
+            } else if (!this.insertItem(itemStack2, 3, 39, false)) {
                 return ItemStack.EMPTY;
             }
             if (itemStack2.isEmpty()) {
@@ -84,11 +89,7 @@ public class BetterFurnaceHandler extends ScreenHandler {
                 return ItemStack.EMPTY;
             }
             slot2.onTakeItem(player, itemStack2);
-            if (slot == 0) {
-                player.dropItem(itemStack2, false);
-            }
         }
-
         return itemStack;
     }
 

@@ -10,6 +10,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 
 public class PickaxeBlock extends Block {
+//看心情 可能准备写一种爆炸效果（
     public PickaxeBlock(Settings settings) {
         super(settings);
     }

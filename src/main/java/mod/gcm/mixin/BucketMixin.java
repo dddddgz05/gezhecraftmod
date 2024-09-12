@@ -25,15 +25,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import static net.minecraft.entity.decoration.DisplayEntity.BlockDisplayEntity;
 
 @Mixin(Item.class)
-public abstract class BucketItemMixin {
+public abstract class BucketMixin {
     @Inject(method = "getName(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/text/Text;", at = @At("HEAD"), cancellable = true)
     public void getName(ItemStack stack, CallbackInfoReturnable<Text> cir) {
         if (stack.getItem() == Items.BUCKET && EnchantmentHelper.getLevel(Main.FAKE_BLOCK, stack) > 0) {
             if (stack.hasNbt()) {
                 NbtCompound nbt = stack.getNbt();
+//                if (nbt.contains("block_state")) {
                 if (nbt.contains("Block")) {
+//                    String identifierString = nbt.get("block_state").getString("Name");
+                    String identifierString = nbt.getString("Block");
                     cir.setReturnValue(Text.translatable("item.minecraft.bucket_with_block",
-                            Registries.BLOCK.get(Identifier.tryParse(nbt.getString("Block"))).getName()));
+                            Registries.BLOCK.get(Identifier.tryParse(identifierString)).getName()));
                 }
             }
         }
@@ -45,6 +48,7 @@ public abstract class BucketItemMixin {
         if (stack.getItem() == Items.BUCKET && EnchantmentHelper.getLevel(Main.FAKE_BLOCK, stack) > 0) {
             NbtCompound nbt = stack.getOrCreateNbt();
             World world = context.getWorld();
+//            if (nbt.contains("block_state")) {
             if (nbt.contains("Block")) {
                 Vec3i vec3i = context.getBlockPos().offset(context.getSide());
                 BlockDisplayEntity blockDisplay = new BlockDisplayEntity(EntityType.BLOCK_DISPLAY, world);
@@ -66,6 +70,13 @@ public abstract class BucketItemMixin {
                 world.breakBlock(pos, false);
                 cir.setReturnValue(ActionResult.SUCCESS);
             }
+        }
+    }
+
+    @Inject(method = "hasGlint", at = @At("HEAD"), cancellable = true)
+    public void hasGlint(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
+        if (stack.getItem() == Items.BUCKET) {
+            cir.setReturnValue(stack.hasNbt() && stack.getNbt().contains("Block"));
         }
     }
 }

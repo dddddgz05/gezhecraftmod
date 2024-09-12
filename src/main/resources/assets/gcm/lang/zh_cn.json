@@ -9,6 +9,7 @@
   "enchantment.gcm.attack_all": "不留同类",
   "enchantment.gcm.cannot_select": "选不中",
   "enchantment.gcm.fake_block": "假方块",
+  "enchantment.gcm.no_keep_inventory": "死亡掉落",
   "enchantment.gcm.tnt": "TNT",
   "item.minecraft.bucket_with_block": "装着%s的桶",
   "item.minecraft.tipped_arrow.effect.let_other_see_you": "引人注目之箭",

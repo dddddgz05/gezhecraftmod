@@ -4,11 +4,10 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BrewingMixin",
-    "BucketItemMixin",
+    "BucketMixin",
     "EnchantmentMergeMixin",
     "DisplayEntityTickMixin",
-    "StackTickMixin",
-    "TNTMixin"
+    "StackTickMixin"
   ],
   "injectors": {
     "defaultRequire": 1

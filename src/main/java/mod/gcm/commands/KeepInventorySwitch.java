@@ -14,7 +14,7 @@ import static net.minecraft.server.command.CommandManager.literal;
 public class KeepInventorySwitch {
     public static void register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->
-            dispatcher.register(literal("keepinv").requires(source -> source.hasPermissionLevel(4))
+            dispatcher.register(literal("gkeep").requires(source -> source.hasPermissionLevel(4))
                     .executes(KeepInventorySwitch::execute))
         );
     }

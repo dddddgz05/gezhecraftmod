@@ -5,9 +5,10 @@
   "mixins": [
     "BrewingMixin",
     "BucketMixin",
-    "EnchantmentMergeMixin",
     "DisplayEntityTickMixin",
-    "StackTickMixin"
+    "EnchantmentMergeMixin",
+    "StackTickMixin",
+    "TNTMixin"
   ],
   "injectors": {
     "defaultRequire": 1

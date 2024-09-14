@@ -14,7 +14,7 @@ import static net.minecraft.server.command.CommandManager.literal;
 public class TeleportToDeathLocation {
     public static void register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->
-            dispatcher.register(literal("tpdeath").requires(source -> source.hasPermissionLevel(4))
+            dispatcher.register(literal("gtpd").requires(source -> source.hasPermissionLevel(4))
                     .executes(TeleportToDeathLocation::execute))
         );
     }

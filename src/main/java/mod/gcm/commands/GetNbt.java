@@ -17,7 +17,7 @@ import static net.minecraft.server.command.CommandManager.literal;
 public class GetNbt {
     public static void register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->
-            dispatcher.register(literal("nbt").requires(source -> source.hasPermissionLevel(4))
+            dispatcher.register(literal("gnbt").requires(source -> source.hasPermissionLevel(4))
                     .executes(GetNbt::execute))
         );
     }

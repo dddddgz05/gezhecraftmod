@@ -17,7 +17,7 @@ import static net.minecraft.server.command.CommandManager.literal;
 public class GetEnchantments {
     public static void register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->
-            dispatcher.register(literal("ench")
+            dispatcher.register(literal("gench")
                     .executes(GetEnchantments::execute))
         );
     }

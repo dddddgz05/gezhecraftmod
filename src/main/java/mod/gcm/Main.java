@@ -51,7 +51,7 @@ public class Main implements ModInitializer {
 			.create(BetterFurnaceEntity::new, BETTER_FURNACE).build();
 	public static Item PEPPER_ITEM =
 			new AliasedBlockItem(PEPPER_BLOCK, new FabricItemSettings().food(new FoodComponent.Builder()
-					.saturationModifier(3).hunger(4).statusEffect(new StatusEffectInstance(SPICY_EFFECT, 1200), 0.9f)
+					.saturationModifier(3).hunger(4).statusEffect(new StatusEffectInstance(SPICY_EFFECT, 1200, 2), 0.9f)
 					.build()));
 	public static Item EXPERIENCE = new ExperienceItem(new FabricItemSettings());
 	public static Enchantment CANNOT_SELECT = new SimpleEnchantment(UNCOMMON, BREAKABLE, new EquipmentSlot[]{MAINHAND});

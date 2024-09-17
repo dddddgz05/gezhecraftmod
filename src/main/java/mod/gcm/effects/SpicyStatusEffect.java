@@ -14,13 +14,12 @@ public class SpicyStatusEffect extends StatusEffect {
 
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
-        return duration % 20 == 0;
+        return duration % 15 == 0;
     }
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        DamageSource SPICY = new DamageSource(
-                entity.getWorld().getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(Main.SPICY_KEY));
-        entity.damage(SPICY, 1);
+        DamageSource SPICY = new DamageSource(entity.getWorld().getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(Main.SPICY_KEY));
+        entity.damage(SPICY, amplifier + 1);
     }
 }

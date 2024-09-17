@@ -21,7 +21,6 @@ public abstract class DisplayEntityTickMixin {
         Entity this_ = (Entity)(Object)this;
         if ((Entity)(Object)this instanceof BlockDisplayEntity blockDisplay) {
             World world = this_.getWorld();
-            // 此 bug 修不了
             if (!world.getBlockState(this_.getBlockPos()).isAir()) {
                 NbtCompound nbt = new NbtCompound();
                 blockDisplay.writeNbt(nbt);

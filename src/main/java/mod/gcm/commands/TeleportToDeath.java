@@ -11,11 +11,11 @@ import java.util.Optional;
 
 import static net.minecraft.server.command.CommandManager.literal;
 
-public class TeleportToDeathLocation {
+public class TeleportToDeath {
     public static void register() {
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) ->
             dispatcher.register(literal("gtpd").requires(source -> source.hasPermissionLevel(4))
-                    .executes(TeleportToDeathLocation::execute))
+                    .executes(TeleportToDeath::execute))
         );
     }
 

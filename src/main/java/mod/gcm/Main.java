@@ -6,7 +6,7 @@ import mod.gcm.commands.*;
 import mod.gcm.effects.*;
 import mod.gcm.enchantments.*;
 import mod.gcm.items.*;
-import mod.gcm.screen.BetterFurnaceScreen;
+import mod.gcm.screen.*;
 import mod.gcm.screen.handler.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -37,8 +37,8 @@ import static net.minecraft.registry.Registries.*;
 import static net.minecraft.registry.Registry.register;
 
 public class Main implements ModInitializer {
-//bug太多
 	public static RegistryKey<DamageType> SPICY_KEY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of("gcm", "spicy"));
+	public static RegistryKey<DamageType> HOPPER_KEY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of("gcm", "hopper"));
 
 	public static Block PICKAXE_BLOCK = new PickaxeBlock(FabricBlockSettings.copy(Blocks.STONE));
 	public static StatusEffect LET_OTHER_SEE_YOU_EFFECT = new LetOtherSeeYouStatusEffect(StatusEffectCategory.NEUTRAL, 0x3fad5b);
@@ -77,9 +77,9 @@ public class Main implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		// 命令
-		TeleportToDeathLocation.register();
+		TeleportToDeath.register();
 		GetEnchantments.register();
-		KeepInventorySwitch.register();
+		KeepInventory.register();
 		GetNbt.register();
 		// 物品
 		register(ITEM, "gcm:pepper", PEPPER_ITEM);
@@ -95,7 +95,7 @@ public class Main implements ModInitializer {
 		register(BLOCK, "gcm:experience_block", EXPERIENCE_BLOCK);
 		register(ITEM, "gcm:experience_block", new BlockItem(EXPERIENCE_BLOCK, new FabricItemSettings()));
 		register(BLOCK_ENTITY_TYPE, "gcm:better_furnace", BETTER_FURNACE_TYPE);
-		// 实体类型（不知道多少个版本之后用GeckoLib凑合着写一个）
+		// 实体类型（大概不会了）
 		// 附魔
 		register(ENCHANTMENT, "gcm:cannot_select", CANNOT_SELECT);
 		register(ENCHANTMENT, "gcm:attack_all", ATTACK_ALL);

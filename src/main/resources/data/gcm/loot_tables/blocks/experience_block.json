@@ -6,7 +6,8 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gcm:experience_block"
+          "name": "gcm:experience",
+          "count": 9
         }
       ],
       "conditions": [

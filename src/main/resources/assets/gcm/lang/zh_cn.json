@@ -23,5 +23,9 @@
   "itemGroup.gcm.group": "奇奇怪怪的物品",
   "message.block.gcm.pickaxe_block.cannot_mine": "<位于[%d,%d,%d]的镐子方块> 你挖个%s我看看！",
   "message.command.gcm.keep_inventory.query": "死亡不掉落现在为%s",
-  "message.command.gcm.keep_inventory.set": "死亡不掉落现在被设置为%s"
+  "message.command.gcm.keep_inventory.set": "死亡不掉落现在被设置为%s",
+  "message.command.gcm.enchantments.empty": "%s没有附魔！",
+  "message.command.gcm.enchantments.query": "%s有下列附魔：%s",
+  "message.command.gcm.nbt.empty": "%s没有NBT！",
+  "message.command.gcm.nbt.query": "%s有下列NBT：%s"
 }

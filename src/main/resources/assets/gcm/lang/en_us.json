@@ -268,5 +268,9 @@
   "itemGroup.gcm.group": "GCM Items",
   "message.block.gcm.pickaxe_block.cannot_mine": "<Pickaxe Block At [%d,%d,%d]> I cannot mine %s.",
   "message.command.gcm.keep_inventory.query": "Keep inventory is %s now",
-  "message.command.gcm.keep_inventory.set": "Keep inventory set to %s"
+  "message.command.gcm.keep_inventory.set": "Keep inventory set to %s",
+  "message.command.gcm.enchantments.empty": "There is no enchantments for %s.",
+  "message.command.gcm.enchantments.query": "Enchantments for %s:\n%s",
+  "message.command.gcm.nbt.empty": "There is no NBTs for %s.",
+  "message.command.gcm.nbt.query": "NBTs for %s:\n%s"
 }

@@ -1,13 +1,22 @@
 package mod.gcm;
 
-import mod.gcm.blocks.*;
-import mod.gcm.blocks.entities.*;
-import mod.gcm.commands.*;
-import mod.gcm.effects.*;
-import mod.gcm.enchantments.*;
-import mod.gcm.items.*;
-import mod.gcm.screen.*;
-import mod.gcm.screen.handler.*;
+import mod.gcm.blocks.BetterFurnaceBlock;
+import mod.gcm.blocks.CropBlockAge3;
+import mod.gcm.blocks.ExperienceBlock;
+import mod.gcm.blocks.entities.BetterFurnaceEntity;
+import mod.gcm.commands.GetEnchantments;
+import mod.gcm.commands.GetNbt;
+import mod.gcm.commands.KeepInventory;
+import mod.gcm.commands.TeleportToDeath;
+import mod.gcm.effects.LetOtherSeeYouStatusEffect;
+import mod.gcm.effects.SpicyStatusEffect;
+import mod.gcm.enchantments.AttackAllEnchantment;
+import mod.gcm.enchantments.NoKeepInventoryEnchantment;
+import mod.gcm.enchantments.SimpleEnchantment;
+import mod.gcm.items.ExperienceItem;
+import mod.gcm.screen.BetterFurnaceScreen;
+import mod.gcm.screen.handler.BetterFurnaceHandler;
+import mod.gcm.utils.PickaxeDispenserBehavior;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -16,12 +25,15 @@ import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityT
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.damage.DamageType;
-import net.minecraft.entity.effect.*;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
 import net.minecraft.registry.RegistryKey;
@@ -30,9 +42,10 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import static net.minecraft.enchantment.Enchantment.Rarity.*;
-import static net.minecraft.enchantment.EnchantmentTarget.*;
-import static net.minecraft.entity.EquipmentSlot.*;
+import static net.minecraft.enchantment.Enchantment.Rarity.UNCOMMON;
+import static net.minecraft.enchantment.EnchantmentTarget.BREAKABLE;
+import static net.minecraft.enchantment.EnchantmentTarget.WEAPON;
+import static net.minecraft.entity.EquipmentSlot.MAINHAND;
 import static net.minecraft.registry.Registries.*;
 import static net.minecraft.registry.Registry.register;
 
@@ -40,7 +53,6 @@ public class Main implements ModInitializer {
 	public static RegistryKey<DamageType> SPICY_KEY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of("gcm", "spicy"));
 	public static RegistryKey<DamageType> HOPPER_KEY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of("gcm", "hopper"));
 
-	public static Block PICKAXE_BLOCK = new PickaxeBlock(FabricBlockSettings.copy(Blocks.STONE));
 	public static StatusEffect LET_OTHER_SEE_YOU_EFFECT = new LetOtherSeeYouStatusEffect(StatusEffectCategory.NEUTRAL, 0x3fad5b);
 	public static Potion LET_OTHER_SEE_YOU_POTION = new Potion(new StatusEffectInstance(LET_OTHER_SEE_YOU_EFFECT, 1200));
 	public static StatusEffect SPICY_EFFECT = new SpicyStatusEffect(StatusEffectCategory.NEUTRAL, 0xd02020);
@@ -68,14 +80,19 @@ public class Main implements ModInitializer {
 	public static ItemGroup GROUP = FabricItemGroup.builder().icon(Items.SOUL_CAMPFIRE::getDefaultStack)
 			.displayName(Text.translatable("itemGroup.gcm.group"))
 			.entries((dispatcher, entries) -> {
-				entries.add(new ItemStack(PICKAXE_BLOCK));
+				entries.add(new ItemStack(EXPERIENCE_BLOCK));
 				entries.add(new ItemStack(PEPPER_ITEM));
 				entries.add(new ItemStack(EXPERIENCE));
-				entries.add(new ItemStack(EXPERIENCE_BLOCK));
 			}).build();
 
 	@Override
 	public void onInitialize() {
+		DispenserBlock.registerBehavior(Items.WOODEN_PICKAXE, new PickaxeDispenserBehavior());
+		DispenserBlock.registerBehavior(Items.GOLDEN_PICKAXE, new PickaxeDispenserBehavior());
+		DispenserBlock.registerBehavior(Items.STONE_PICKAXE, new PickaxeDispenserBehavior());
+		DispenserBlock.registerBehavior(Items.IRON_PICKAXE, new PickaxeDispenserBehavior());
+		DispenserBlock.registerBehavior(Items.DIAMOND_PICKAXE, new PickaxeDispenserBehavior());
+		DispenserBlock.registerBehavior(Items.NETHERITE_PICKAXE, new PickaxeDispenserBehavior());
 		// 命令
 		TeleportToDeath.register();
 		GetEnchantments.register();
@@ -88,14 +105,11 @@ public class Main implements ModInitializer {
 		register(ITEM_GROUP, "gcm:group", GROUP);
 		// 方块/方块物品/方块实体类型
 		register(BLOCK, "gcm:pepper", PEPPER_BLOCK);
-		register(BLOCK, "gcm:pickaxe_block", PICKAXE_BLOCK);
-		register(ITEM, "gcm:pickaxe_block", new BlockItem(PICKAXE_BLOCK, new FabricItemSettings()));
 		register(BLOCK, "gcm:better_furnace", BETTER_FURNACE);
 		register(ITEM, "gcm:better_furnace", new BlockItem(BETTER_FURNACE, new FabricItemSettings()));
 		register(BLOCK, "gcm:experience_block", EXPERIENCE_BLOCK);
 		register(ITEM, "gcm:experience_block", new BlockItem(EXPERIENCE_BLOCK, new FabricItemSettings()));
 		register(BLOCK_ENTITY_TYPE, "gcm:better_furnace", BETTER_FURNACE_TYPE);
-		// 实体类型（大概不会了）
 		// 附魔
 		register(ENCHANTMENT, "gcm:cannot_select", CANNOT_SELECT);
 		register(ENCHANTMENT, "gcm:attack_all", ATTACK_ALL);
@@ -106,5 +120,6 @@ public class Main implements ModInitializer {
 		register(STATUS_EFFECT, "gcm:let_other_see_you", LET_OTHER_SEE_YOU_EFFECT);
 		register(POTION, "gcm:let_other_see_you", LET_OTHER_SEE_YOU_POTION);
 		register(STATUS_EFFECT, "gcm:spicy", SPICY_EFFECT);
+		// 特殊配方 删了
 	}
 }

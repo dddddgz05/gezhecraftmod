@@ -11,6 +11,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import java.util.Set;
 import java.util.function.Supplier;
 
 import static net.minecraft.server.command.CommandManager.literal;
@@ -44,25 +45,48 @@ public class GetNbt {
     public static String getString(NbtCompound nbt, int level) {
         StringBuilder sb = new StringBuilder();
         String space = "  ".repeat(level);
-        for (String key: nbt.getKeys()) {
+        Set<String> keys = nbt.getKeys();
+        sb.append("{\n");
+        int i = 0;
+        for (String key: keys) {
             NbtElement element = nbt.get(key);
-            sb.append(space).append(key).append(": ");
-            if (element instanceof NbtList list) {
-                sb.append("\n");
-                for (NbtElement each: list) {
-                    if (each.asString().charAt(0) == '{') {
-                        sb.append(space).append(getString((NbtCompound)each, level + 1)).append("\n");
-                    } else {
-                        sb.append(space).append("  ").append(each.asString()).append("\n");
-                    }
-                }
-            } else if (element.asString().charAt(0) == '{') {
-                System.out.println(element.asString());
-                sb.append(getString((NbtCompound)element, level + 1)).append("\n");
+            String string = element.asString();
+            sb.append(space).append("  ").append(key).append(": ");
+            if (string.charAt(0) == '{') {
+                sb.append(getString((NbtCompound)element, level + 1));
+            } else if (string.charAt(0) == '[') {
+                sb.append(getString((NbtList)element, level + 1));
             } else {
-                sb.append(element.asString()).append("\n");
+                sb.append(string);
+            }
+            if (++i < keys.size()) {
+                sb.append(",\n");
             }
         }
+        sb.append("\n").append(space).append("  }");
+        return sb.toString();
+    }
+
+    public static String getString(NbtList list, int level) {
+        StringBuilder sb = new StringBuilder();
+        String space = "  ".repeat(level);
+        sb.append("[\n");
+        int i = 0;
+        for (NbtElement element: list) {
+            sb.append(space);
+            String string = element.asString();
+            if (string.charAt(0) == '{') {
+                sb.append(getString((NbtCompound)element, level + 1));
+            } else if (string.charAt(0) == '[') {
+                sb.append(getString((NbtList)element, level + 1));
+            } else {
+                sb.append(space).append("  ").append(element.asString());
+            }
+            if (++i < list.size()) {
+                sb.append(",\n");
+            }
+        }
+        sb.append("\n").append(space).append("]");
         return sb.toString();
     }
 }

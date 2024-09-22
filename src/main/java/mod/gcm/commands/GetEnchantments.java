@@ -33,7 +33,7 @@ public class GetEnchantments {
             context.getSource().sendFeedback(() ->
                     Text.translatable("message.command.gcm.enchantments.empty", stack.getName().getString()), false);
         } else {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder().append("\n");
             for (int i = 0; i < enchantments.size(); ++i) {
                 NbtCompound nbt = enchantments.getCompound(i);
                 Identifier enchantment = Identifier.tryParse(nbt.getString("id"));
@@ -41,10 +41,13 @@ public class GetEnchantments {
                     String string = "enchantment." + enchantment.getNamespace() + "." + enchantment.getPath();
                     sb.append(i + 1).append(". ").append(Text.translatable(string).getString()).append(" ");
                     sb.append(Text.translatable("enchantment.level." + nbt.getShort("lvl")).getString());
+                    if (i < enchantments.size()) {
+                        sb.append("\n");
+                    }
                 }
             }
             context.getSource().sendFeedback(() ->
-                    Text.translatable("message.command.gcm.enchantments.query", sb.toString(), stack.getName().getString()), false);
+                    Text.translatable("message.command.gcm.enchantments.query", stack.getName().getString(), sb.toString()), false);
         }
         return 1;
     }

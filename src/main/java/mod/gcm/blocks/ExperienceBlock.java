@@ -32,7 +32,7 @@ public class ExperienceBlock extends Block {
             } else {
                 player.experienceLevel -= 1;
                 ItemEntity entity = new ItemEntity(world, player.getX(), player.getY(), player.getZ(),
-                        new ItemStack(Main.EXPERIENCE, level));
+                        new ItemStack(Main.EXPERIENCE));
                 world.spawnEntity(entity);
             }
             return ActionResult.SUCCESS;

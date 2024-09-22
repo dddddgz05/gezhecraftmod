@@ -44,7 +44,7 @@ public abstract class EnchantmentMergeMixin {
                     if (enchantment != null) {
                         if (getWorld().random.nextFloat() > 0.1f) {
                             Map<Enchantment, Integer> map = new HashMap<>();
-                            map.put(enchantment, (int) nbt.getShort("lvl"));
+                            map.put(enchantment, (int)nbt.getShort("lvl"));
                             map.putAll(EnchantmentHelper.get(stack));
                             EnchantmentHelper.set((map), stack);
                         } else {

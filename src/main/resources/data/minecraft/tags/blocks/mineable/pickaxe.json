@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "gcm:pickaxe_block",
     "gcm:better_furnace",
-    "gcm:experience_block"
+    "gcm:experience_block",
+    "gcm:chat_block"
   ]
 }

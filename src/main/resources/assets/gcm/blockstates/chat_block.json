@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "gcm:block/chat_block",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "gcm:block/chat_block",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "gcm:block/chat_block"
+    },
+    "facing=south": {
+      "model": "gcm:block/chat_block",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "gcm:block/chat_block",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "gcm:block/chat_block",
+      "y": 270
+    }
+  }
+}

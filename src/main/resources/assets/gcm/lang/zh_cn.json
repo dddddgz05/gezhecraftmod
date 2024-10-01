@@ -1,5 +1,6 @@
 {
   "block.gcm.better_furnace": "更好的熔炉",
+  "block.gcm.chat_block": "消息方块",
   "block.gcm.experience_block": "经验方块",
   "death.attack.spicy": "%1$s辣死了",
   "death.attack.spicy.player": "%1$s没能在辣死前逃离%2$s",
@@ -27,5 +28,9 @@
   "message.command.gcm.enchantments.empty": "%s没有附魔！",
   "message.command.gcm.enchantments.query": "%s有下列附魔：\n%s",
   "message.command.gcm.nbt.empty": "%s没有NBT！",
-  "message.command.gcm.nbt.query": "%s有下列NBT：\n%s"
+  "message.command.gcm.nbt.query": "%s有下列NBT：\n%s",
+  "advancements.gcm.root.title": "只能挖3个方块？",
+  "advancements.gcm.root.description": "合成一个木镐——经常只为玩家挖3个方块的工具",
+  "advancements.gcm.chat_block.title": "全体目光向我看齐，我说个事",
+  "advancements.gcm.chat_block.description": "合成一个消息方块"
 }

@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gcm:pickaxe_block"
+          "name": "gcm:chat_block"
         }
       ],
       "conditions": [

@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "get": {
+      "conditions": {
+        "items": [
+          {
+            "items": ["minecraft:wooden_pickaxe"]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "title": {
+      "translate": "advancements.gcm.root.title"
+    },
+    "description": {
+      "translate": "advancements.gcm.root.description"
+    },
+    "icon": {
+      "item": "minecraft:wooden_pickaxe"
+    }
+  },
+  "requirements": [
+    ["get"]
+  ]
+}

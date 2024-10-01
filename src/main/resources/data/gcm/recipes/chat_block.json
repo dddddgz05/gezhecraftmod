@@ -1,0 +1,22 @@
+{
+  "type": "crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "RSR",
+    "BBB"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "minecraft:smooth_stone"
+    },
+    "B": {
+      "item": "minecraft:bow"
+    }
+  },
+  "result": {
+    "item": "gcm:chat_block"
+  }
+}

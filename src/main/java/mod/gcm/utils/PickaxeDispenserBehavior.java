@@ -21,7 +21,7 @@ public class PickaxeDispenserBehavior implements DispenserBehavior {
         if ((!state.isAir()) && ((MiningToolItem)stack.getItem()).getMaterial().getMiningLevel() >= MyBlockUtil.getMiningLevel(state)) {
             world.breakBlock(pos, true);
             if (stack.getMaxDamage() - stack.getDamage() > 1) {
-                stack.damage(1, world.random, (ServerPlayerEntity) MyWorldUtil.getNearestPlayer(Vec3d.ofCenter(pos), world));
+                stack.damage(1, world.random, null);
             } else {
                 stack.decrement(1);
             }

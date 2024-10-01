@@ -1,0 +1,29 @@
+{
+  "parent": "gcm:root",
+  "criteria": {
+    "get": {
+      "conditions": {
+        "items": [
+          {
+            "items": ["gcm:chat_block"]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "title": {
+      "translate": "advancements.gcm.chat_block.title"
+    },
+    "description": {
+      "translate": "advancements.gcm.chat_block.description"
+    },
+    "icon": {
+      "item": "gcm:chat_block"
+    }
+  },
+  "requirements": [
+    ["get"]
+  ]
+}

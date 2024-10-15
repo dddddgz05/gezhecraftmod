@@ -5,13 +5,9 @@
   "mixins": [
     "BrewingMixin",
     "BucketMixin",
-    "DisplayEntityTickMixin",
-    "EnchantmentMergeMixin",
-    "HopperStepMixin",
-    "SecondTNTMixin",
-    "StackTickMixin",
-    "TNTMixin",
-    "WaterBottleMixin"
+    "FlintAndSteelItemMixin",
+    "ItemMixin",
+    "PotionItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1

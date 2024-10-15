@@ -58,11 +58,10 @@ public class Main implements ModInitializer {
 					.saturationModifier(3).hunger(4).statusEffect(new StatusEffectInstance(SPICY_EFFECT, 1200, 2), 0.9f)
 					.build()));
 	public static Item EXPERIENCE = new ExperienceItem(new FabricItemSettings());
-	public static Enchantment CANNOT_SELECT = new SimpleEnchantment(UNCOMMON, BREAKABLE, new EquipmentSlot[]{MAINHAND});
 	public static Enchantment ATTACK_ALL = new AttackAllEnchantment(UNCOMMON, BREAKABLE, new EquipmentSlot[]{MAINHAND});
-	public static Enchantment FAKE_BLOCK = new SimpleEnchantment(UNCOMMON, WEAPON, new EquipmentSlot[]{MAINHAND});
+	public static Enchantment FAKE_BLOCK = new FakeBlockEnchantment();
 	public static Enchantment NO_KEEP_INVENTORY = new NoKeepInventoryEnchantment(UNCOMMON, BREAKABLE, new EquipmentSlot[]{MAINHAND});
-	public static Enchantment TNT = new SimpleEnchantment(UNCOMMON, WEAPON, new EquipmentSlot[]{MAINHAND});
+	public static Enchantment TNT = new TNTEnchantment();
 	public static final ScreenHandlerType<BetterFurnaceHandler> BETTER_FURNACE_HANDLER;
 	static {
 		BETTER_FURNACE_HANDLER = ScreenHandlerRegistry.registerSimple(Identifier.of("gcm", "better_furnace"), BetterFurnaceHandler::new);
@@ -105,8 +104,8 @@ public class Main implements ModInitializer {
 		register(BLOCK, "gcm:experience_block", EXPERIENCE_BLOCK);
 		register(ITEM, "gcm:experience_block", new BlockItem(EXPERIENCE_BLOCK, new FabricItemSettings()));
 		register(BLOCK_ENTITY_TYPE, "gcm:better_furnace", BETTER_FURNACE_TYPE);
+		// 流体 删了
 		// 附魔
-		register(ENCHANTMENT, "gcm:cannot_select", CANNOT_SELECT);
 		register(ENCHANTMENT, "gcm:attack_all", ATTACK_ALL);
 		register(ENCHANTMENT, "gcm:fake_block", FAKE_BLOCK);
 		register(ENCHANTMENT, "gcm:no_keep_inventory", NO_KEEP_INVENTORY);

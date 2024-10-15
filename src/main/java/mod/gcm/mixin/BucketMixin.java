@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtHelper;
 import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -31,10 +32,8 @@ public abstract class BucketMixin {
         if (stack.getItem() == Items.BUCKET && EnchantmentHelper.getLevel(Main.FAKE_BLOCK, stack) > 0) {
             if (stack.hasNbt()) {
                 NbtCompound nbt = stack.getNbt();
-//                if (nbt.contains("block_state")) {
-                if (nbt.contains("Block")) {
-//                    String identifierString = nbt.get("block_state").getString("Name");
-                    String identifierString = nbt.getString("Block");
+                if (nbt.contains("block_state")) {
+                    String identifierString = ((NbtCompound)nbt.get("block_state")).getString("Name");
                     cir.setReturnValue(Text.translatable("item.minecraft.bucket_with_block",
                             Registries.BLOCK.get(Identifier.tryParse(identifierString)).getName()));
                 }
@@ -48,35 +47,25 @@ public abstract class BucketMixin {
         if (stack.getItem() == Items.BUCKET && EnchantmentHelper.getLevel(Main.FAKE_BLOCK, stack) > 0) {
             NbtCompound nbt = stack.getOrCreateNbt();
             World world = context.getWorld();
-//            if (nbt.contains("block_state")) {
-            if (nbt.contains("Block")) {
+            if (nbt.contains("block_state")) {
                 Vec3i vec3i = context.getBlockPos().offset(context.getSide());
                 BlockDisplayEntity blockDisplay = new BlockDisplayEntity(EntityType.BLOCK_DISPLAY, world);
                 NbtCompound nbt1 = new NbtCompound();
-                NbtCompound nbt2 = new NbtCompound();
-                nbt2.putString("Name", nbt.getString("Block"));
-                nbt1.put("block_state", nbt2);
+                nbt1.put("block_state", nbt.get("block_state"));
                 blockDisplay.readNbt(nbt1);
                 blockDisplay.setPosition(Vec3d.of(vec3i));
                 world.spawnEntity(blockDisplay);
-                nbt.remove("Block");
+                nbt.remove("block_state");
                 stack.setNbt(nbt);
                 cir.setReturnValue(ActionResult.SUCCESS);
             } else {
                 BlockPos pos = context.getBlockPos();
                 BlockState state = world.getBlockState(pos);
-                nbt.putString("Block", Registries.BLOCK.getId(state.getBlock()).toString());
+                nbt.put("block_state", NbtHelper.fromBlockState(state));
                 stack.setNbt(nbt);
                 world.breakBlock(pos, false);
                 cir.setReturnValue(ActionResult.SUCCESS);
             }
-        }
-    }
-
-    @Inject(method = "hasGlint", at = @At("HEAD"), cancellable = true)
-    public void hasGlint(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        if (stack.getItem() == Items.BUCKET) {
-            cir.setReturnValue(stack.hasNbt() && stack.getNbt().contains("Block"));
         }
     }
 }

@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Block.class)
-public abstract class HopperStepMixin {
+public abstract class BlockMixin {
     @Inject(method = "onSteppedOn", at = @At("HEAD"))
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity, CallbackInfo ci) {
         if (entity instanceof LivingEntity l && state.getBlock() == Blocks.HOPPER && l.getBlockPos().equals(pos) && l.getWidth() <= 0.625) {

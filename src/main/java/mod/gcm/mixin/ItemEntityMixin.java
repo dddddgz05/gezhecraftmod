@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Mixin(Entity.class)
-public abstract class EnchantmentMergeMixin {
+public abstract class ItemEntityMixin {
     @Shadow public abstract World getWorld();
 
     @Shadow public abstract Box getBoundingBox();

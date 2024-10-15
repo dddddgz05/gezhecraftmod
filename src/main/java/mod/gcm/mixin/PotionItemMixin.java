@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Map;
 
 @Mixin(PotionItem.class)
-public abstract class WaterBottleMixin {
+public abstract class PotionItemMixin {
     @Inject(method = "finishUsing", at = @At("HEAD"))
     public void finishUsing(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
         Map<StatusEffect, StatusEffectInstance> effects = user.getActiveStatusEffects();

@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import static net.minecraft.entity.decoration.DisplayEntity.BlockDisplayEntity;
 
 @Mixin(DisplayEntity.class)
-public abstract class DisplayEntityTickMixin {
+public abstract class DisplayEntityMixin {
     @Inject(method = "tick", at = @At("HEAD"))
     public void tick(CallbackInfo ci) {
         Entity this_ = (Entity)(Object)this;

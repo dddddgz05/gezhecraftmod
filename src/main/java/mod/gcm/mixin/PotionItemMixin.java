@@ -1,5 +1,6 @@
 package mod.gcm.mixin;
 
+import mod.gcm.GStatusEffects;
 import mod.gcm.Main;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -19,12 +20,12 @@ public abstract class PotionItemMixin {
     @Inject(method = "finishUsing", at = @At("HEAD"))
     public void finishUsing(ItemStack stack, World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
         Map<StatusEffect, StatusEffectInstance> effects = user.getActiveStatusEffects();
-        if (effects.containsKey(Main.SPICY_EFFECT)) {
-            StatusEffectInstance old = effects.get(Main.SPICY_EFFECT);
+        if (effects.containsKey(GStatusEffects.SPICY)) {
+            StatusEffectInstance old = effects.get(GStatusEffects.SPICY);
             int oldAmplifier = old.getAmplifier();
-            user.removeStatusEffect(Main.SPICY_EFFECT);
+            user.removeStatusEffect(GStatusEffects.SPICY);
             if (oldAmplifier > 0) {
-                StatusEffectInstance newInstance = new StatusEffectInstance(Main.SPICY_EFFECT, old.getDuration(), old.getAmplifier() - 1);
+                StatusEffectInstance newInstance = new StatusEffectInstance(GStatusEffects.SPICY, old.getDuration(), old.getAmplifier() - 1);
                 user.addStatusEffect(newInstance);
             }
         }

@@ -1,5 +1,6 @@
 package mod.gcm.mixin;
 
+import mod.gcm.GStatusEffects;
 import mod.gcm.Main;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potions;
@@ -13,6 +14,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class BrewingMixin {
     @Inject(method = "registerDefaults", at = @At("HEAD"))
     private static void registerDefaults(CallbackInfo ci) {
-        BrewingRecipeRegistry.registerPotionRecipe(Potions.WATER, Items.ENDER_EYE, Main.LET_OTHER_SEE_YOU_POTION);
+        BrewingRecipeRegistry.registerPotionRecipe(Potions.WATER, Items.ENDER_EYE, GStatusEffects.LET_OTHER_SEE_YOU_P);
     }
 }

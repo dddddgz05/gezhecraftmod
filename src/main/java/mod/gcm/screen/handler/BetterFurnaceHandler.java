@@ -53,28 +53,26 @@ public class BetterFurnaceHandler extends ScreenHandler {
     public ItemStack quickMove(PlayerEntity player, int slot) {
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot2 = this.slots.get(slot);
-        if (slot2.hasStack()) {
+        if (slot2 != null && slot2.hasStack()) {
             ItemStack itemStack2 = slot2.getStack();
             itemStack = itemStack2.copy();
+            ItemStack itemStack3 = this.getSlot(0).getStack();
+            ItemStack itemStack4 = this.getSlot(1).getStack();
             if (slot == 2) {
                 if (!this.insertItem(itemStack2, 3, 39, true)) {
                     return ItemStack.EMPTY;
                 }
                 slot2.onQuickTransfer(itemStack2, itemStack);
-            } else if (slot != 1 && slot != 0) {
-                /* if (this.isSmeltable(itemStack2)) {
-                    if (!this.insertItem(itemStack2, 0, 1, false)) {
+            } else if (slot != 0 && slot != 1) {
+                if (!itemStack3.isEmpty() && !itemStack4.isEmpty()) {
+                    if (slot >= 3 && slot < 30) {
+                        if (!this.insertItem(itemStack2, 30, 39, false)) {
+                            return ItemStack.EMPTY;
+                        }
+                    } else if (slot >= 30 && slot < 39 && !this.insertItem(itemStack2, 3, 30, false)) {
                         return ItemStack.EMPTY;
                     }
-                } else if (this.isFuel(itemStack2)) {
-                    if (!this.insertItem(itemStack2, 1, 2, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else */ if (slot >= 3 && slot < 30) {
-                    if (!this.insertItem(itemStack2, 30, 39, false)) {
-                        return ItemStack.EMPTY;
-                    }
-                } else if (slot >= 30 && slot < 39 && !this.insertItem(itemStack2, 3, 30, false)) {
+                } else if (!this.insertItem(itemStack2, 0, 2, false)) {
                     return ItemStack.EMPTY;
                 }
             } else if (!this.insertItem(itemStack2, 3, 39, false)) {

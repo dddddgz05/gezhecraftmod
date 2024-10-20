@@ -4,8 +4,8 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BrewingMixin",
-    "BucketMixin",
-    "FlintAndSteelItemMixin",
+    "DisplayEntityMixin",
+    "EfficiencyEnchantmentMixin",
     "ItemMixin",
     "PotionItemMixin"
   ],

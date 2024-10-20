@@ -1,0 +1,18 @@
+{
+  "type": "crafting_shaped",
+  "category": "redstone",
+  "pattern": [
+    "RD"
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:redstone_lamp"
+    },
+    "D": {
+      "item": "minecraft:green_dye"
+    }
+  },
+  "result": {
+    "item": "gcm:green_lamp"
+  }
+}

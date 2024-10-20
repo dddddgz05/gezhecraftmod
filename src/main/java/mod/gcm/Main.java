@@ -3,8 +3,6 @@ package mod.gcm;
 import mod.gcm.blocks.*;
 import mod.gcm.blocks.entities.*;
 import mod.gcm.commands.*;
-import mod.gcm.effects.*;
-import mod.gcm.enchantments.*;
 import mod.gcm.items.*;
 import mod.gcm.screen.*;
 import mod.gcm.screen.handler.*;
@@ -20,23 +18,15 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.damage.DamageType;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.*;
-import net.minecraft.potion.Potion;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import static net.minecraft.enchantment.Enchantment.Rarity.*;
-import static net.minecraft.enchantment.EnchantmentTarget.*;
-import static net.minecraft.entity.EquipmentSlot.*;
 import static net.minecraft.registry.Registries.*;
 import static net.minecraft.registry.Registry.register;
 
@@ -44,9 +34,6 @@ public class Main implements ModInitializer {
 	public static RegistryKey<DamageType> SPICY_KEY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of("gcm", "spicy"));
 	public static RegistryKey<DamageType> HOPPER_KEY = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of("gcm", "hopper"));
 
-	public static StatusEffect LET_OTHER_SEE_YOU_EFFECT = new LetOtherSeeYouStatusEffect(StatusEffectCategory.NEUTRAL, 0x3fad5b);
-	public static Potion LET_OTHER_SEE_YOU_POTION = new Potion(new StatusEffectInstance(LET_OTHER_SEE_YOU_EFFECT, 1200));
-	public static StatusEffect SPICY_EFFECT = new SpicyStatusEffect(StatusEffectCategory.NEUTRAL, 0xd02020);
 	public static Block BETTER_FURNACE = new BetterFurnaceBlock(FabricBlockSettings.copy(Blocks.STONE));
 	public static Block CHAT_BLOCK = new ChatBlock(FabricBlockSettings.copy(Blocks.SMOOTH_STONE));
 	public static Block EXPERIENCE_BLOCK = new ExperienceBlock(FabricBlockSettings.copy(Blocks.STONE));
@@ -55,13 +42,10 @@ public class Main implements ModInitializer {
 			.create(BetterFurnaceEntity::new, BETTER_FURNACE).build();
 	public static Item PEPPER_ITEM =
 			new AliasedBlockItem(PEPPER_BLOCK, new FabricItemSettings().food(new FoodComponent.Builder()
-					.saturationModifier(3).hunger(4).statusEffect(new StatusEffectInstance(SPICY_EFFECT, 1200, 2), 0.9f)
+					.saturationModifier(3).hunger(4).statusEffect(new StatusEffectInstance(GStatusEffects.SPICY, 1200, 2), 0.9f)
 					.build()));
+	public static Item EMERALD_BUCKET = new EmeraldBucketItem(new FabricItemSettings());
 	public static Item EXPERIENCE = new ExperienceItem(new FabricItemSettings());
-	public static Enchantment ATTACK_ALL = new AttackAllEnchantment(UNCOMMON, BREAKABLE, new EquipmentSlot[]{MAINHAND});
-	public static Enchantment FAKE_BLOCK = new FakeBlockEnchantment();
-	public static Enchantment NO_KEEP_INVENTORY = new NoKeepInventoryEnchantment(UNCOMMON, BREAKABLE, new EquipmentSlot[]{MAINHAND});
-	public static Enchantment TNT = new TNTEnchantment();
 	public static final ScreenHandlerType<BetterFurnaceHandler> BETTER_FURNACE_HANDLER;
 	static {
 		BETTER_FURNACE_HANDLER = ScreenHandlerRegistry.registerSimple(Identifier.of("gcm", "better_furnace"), BetterFurnaceHandler::new);
@@ -73,8 +57,24 @@ public class Main implements ModInitializer {
 			.entries((dispatcher, entries) -> {
 				entries.add(new ItemStack(CHAT_BLOCK));
 				entries.add(new ItemStack(EXPERIENCE_BLOCK));
-				entries.add(new ItemStack(PEPPER_ITEM));
+				entries.add(new ItemStack(EMERALD_BUCKET));
 				entries.add(new ItemStack(EXPERIENCE));
+				entries.add(new ItemStack(PEPPER_ITEM));
+				entries.add(new ItemStack(GBlocks.LIGHT_GRAY_LAMP));
+				entries.add(new ItemStack(GBlocks.GRAY_LAMP));
+				entries.add(new ItemStack(GBlocks.BLACK_LAMP));
+				entries.add(new ItemStack(GBlocks.BROWN_LAMP));
+				entries.add(new ItemStack(GBlocks.RED_LAMP));
+				entries.add(new ItemStack(GBlocks.ORANGE_LAMP));
+				entries.add(new ItemStack(GBlocks.YELLOW_LAMP));
+				entries.add(new ItemStack(GBlocks.LIME_LAMP));
+				entries.add(new ItemStack(GBlocks.GREEN_LAMP));
+				entries.add(new ItemStack(GBlocks.CYAN_LAMP));
+				entries.add(new ItemStack(GBlocks.LIGHT_BLUE_LAMP));
+				entries.add(new ItemStack(GBlocks.BLUE_LAMP));
+				entries.add(new ItemStack(GBlocks.PURPLE_LAMP));
+				entries.add(new ItemStack(GBlocks.MAGENTA_LAMP));
+				entries.add(new ItemStack(GBlocks.PINK_LAMP));
 			}).build();
 
 	@Override
@@ -92,6 +92,7 @@ public class Main implements ModInitializer {
 		GetNbt.register();
 		// 物品
 		register(ITEM, "gcm:pepper", PEPPER_ITEM);
+		register(ITEM, "gcm:emerald_bucket", EMERALD_BUCKET);
 		register(ITEM, "gcm:experience", EXPERIENCE);
 		// 物品组
 		register(ITEM_GROUP, "gcm:group", GROUP);
@@ -104,17 +105,8 @@ public class Main implements ModInitializer {
 		register(BLOCK, "gcm:experience_block", EXPERIENCE_BLOCK);
 		register(ITEM, "gcm:experience_block", new BlockItem(EXPERIENCE_BLOCK, new FabricItemSettings()));
 		register(BLOCK_ENTITY_TYPE, "gcm:better_furnace", BETTER_FURNACE_TYPE);
-		// 流体 删了
-		// 附魔
-		register(ENCHANTMENT, "gcm:attack_all", ATTACK_ALL);
-		register(ENCHANTMENT, "gcm:fake_block", FAKE_BLOCK);
-		register(ENCHANTMENT, "gcm:no_keep_inventory", NO_KEEP_INVENTORY);
-		register(ENCHANTMENT, "gcm:tnt", TNT);
-		// 状态效果/药水
-		register(STATUS_EFFECT, "gcm:let_other_see_you", LET_OTHER_SEE_YOU_EFFECT);
-		register(POTION, "gcm:let_other_see_you", LET_OTHER_SEE_YOU_POTION);
-		register(STATUS_EFFECT, "gcm:spicy", SPICY_EFFECT);
-		// 特殊配方 删了
-		// 实体 没
+		GBlocks.register();
+		GEnchantments.register();
+		GStatusEffects.register();
 	}
 }

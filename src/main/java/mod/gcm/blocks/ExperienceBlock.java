@@ -1,5 +1,6 @@
 package mod.gcm.blocks;
 
+import mod.gcm.GItems;
 import mod.gcm.Main;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -27,12 +28,12 @@ public class ExperienceBlock extends Block {
             if (player.isSneaking()) {
                 player.experienceLevel = 0;
                 ItemEntity entity = new ItemEntity(world, player.getX(), player.getY(), player.getZ(),
-                        new ItemStack(Main.EXPERIENCE, level));
+                        new ItemStack(GItems.EXPERIENCE, level));
                 world.spawnEntity(entity);
             } else {
                 player.experienceLevel -= 1;
                 ItemEntity entity = new ItemEntity(world, player.getX(), player.getY(), player.getZ(),
-                        new ItemStack(Main.EXPERIENCE));
+                        new ItemStack(GItems.EXPERIENCE));
                 world.spawnEntity(entity);
             }
             return ActionResult.SUCCESS;

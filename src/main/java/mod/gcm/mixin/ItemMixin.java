@@ -1,5 +1,6 @@
 package mod.gcm.mixin;
 
+import mod.gcm.GItems;
 import mod.gcm.Main;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -27,12 +28,12 @@ public abstract class ItemMixin {
                 if (user.isSneaking()) {
                     user.experienceLevel = 0;
                     ItemEntity entity = new ItemEntity(world, user.getX(), user.getY(), user.getZ(),
-                            new ItemStack(Main.EXPERIENCE, level));
+                            new ItemStack(GItems.EXPERIENCE, level));
                     world.spawnEntity(entity);
                 } else {
                     user.experienceLevel -= 1;
                     ItemEntity entity = new ItemEntity(world, user.getX(), user.getY(), user.getZ(),
-                            new ItemStack(Main.EXPERIENCE));
+                            new ItemStack(GItems.EXPERIENCE));
                     world.spawnEntity(entity);
                 }
             }

@@ -3,12 +3,12 @@
 	"id": "gcm",
 	"version": "${version}",
 	"name": "Gezhe Craft Mod",
-	"description": "歌者的mod，懂？",
+	"description": "歌者制作的模组",
 	"authors": [
 		"Minecraft-dddddgz"
 	],
 	"contact": {
-		"homepage": "https://github.com/dddddgz05/gezhecraftmod",
+		"homepage": "https://dddddgz05.github.io",
 		"sources": "https://github.com/dddddgz05/gezhecraftmod"
 	},
 	"license": "CC0-1.0",

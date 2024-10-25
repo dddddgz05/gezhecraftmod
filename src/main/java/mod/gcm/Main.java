@@ -44,8 +44,6 @@ public class Main implements ModInitializer {
 			new AliasedBlockItem(PEPPER_BLOCK, new FabricItemSettings().food(new FoodComponent.Builder()
 					.saturationModifier(3).hunger(4).statusEffect(new StatusEffectInstance(GStatusEffects.SPICY, 1200, 2), 0.9f)
 					.build()));
-	public static Item EMERALD_BUCKET = new EmeraldBucketItem(new FabricItemSettings());
-	public static Item EXPERIENCE = new ExperienceItem(new FabricItemSettings());
 	public static final ScreenHandlerType<BetterFurnaceHandler> BETTER_FURNACE_HANDLER;
 	static {
 		BETTER_FURNACE_HANDLER = ScreenHandlerRegistry.registerSimple(Identifier.of("gcm", "better_furnace"), BetterFurnaceHandler::new);
@@ -57,8 +55,9 @@ public class Main implements ModInitializer {
 			.entries((dispatcher, entries) -> {
 				entries.add(new ItemStack(CHAT_BLOCK));
 				entries.add(new ItemStack(EXPERIENCE_BLOCK));
-				entries.add(new ItemStack(EMERALD_BUCKET));
-				entries.add(new ItemStack(EXPERIENCE));
+				entries.add(new ItemStack(GItems.CALENDAR));
+				entries.add(new ItemStack(GItems.EMERALD_BUCKET));
+				entries.add(new ItemStack(GItems.EXPERIENCE));
 				entries.add(new ItemStack(PEPPER_ITEM));
 				entries.add(new ItemStack(GBlocks.LIGHT_GRAY_LAMP));
 				entries.add(new ItemStack(GBlocks.GRAY_LAMP));
@@ -92,8 +91,7 @@ public class Main implements ModInitializer {
 		GetNbt.register();
 		// 物品
 		register(ITEM, "gcm:pepper", PEPPER_ITEM);
-		register(ITEM, "gcm:emerald_bucket", EMERALD_BUCKET);
-		register(ITEM, "gcm:experience", EXPERIENCE);
+		GItems.register();
 		// 物品组
 		register(ITEM_GROUP, "gcm:group", GROUP);
 		// 方块/方块物品/方块实体类型

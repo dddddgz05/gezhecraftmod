@@ -1,6 +1,7 @@
 package mod.gcm.effects;
 
 import mod.gcm.Main;
+import mod.gcm.utils.MyPosUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.damage.DamageSource;
@@ -11,6 +12,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.math.Vec3d;
 
 public class SpicyStatusEffect extends StatusEffect {
     public SpicyStatusEffect(StatusEffectCategory category, int color) {
@@ -27,7 +29,11 @@ public class SpicyStatusEffect extends StatusEffect {
         DamageSource SPICY = new DamageSource(entity.getWorld().getRegistryManager().get(RegistryKeys.DAMAGE_TYPE)
                 .entryOf(Main.SPICY_KEY));
         ParticleEffect particle = ParticleTypes.LAVA;
-        entity.getWorld().addParticle(particle, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
+        for (int i = 0; i < 20; ++i) {
+            Vec3d pos = MyPosUtil.offset(entity.getEyePos(), 0.5);
+            entity.getWorld().addParticle(particle, pos.getX(), pos.getY(), pos.getZ(), 0, 0, 0);
+        }
+        entity.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 75));
         entity.damage(SPICY, amplifier + 1);
     }
 }

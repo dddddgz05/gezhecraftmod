@@ -1,11 +1,16 @@
 package mod.gcm;
 
+import mod.gcm.blocks.CropBlockAge3;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.RedstoneLampBlock;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.FoodComponent;
+import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -27,10 +32,15 @@ public class GBlocks {
     public static Block PURPLE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copy(Blocks.REDSTONE_LAMP));
     public static Block MAGENTA_LAMP = new RedstoneLampBlock(FabricBlockSettings.copy(Blocks.REDSTONE_LAMP));
     public static Block PINK_LAMP = new RedstoneLampBlock(FabricBlockSettings.copy(Blocks.REDSTONE_LAMP));
+    public static Block PEPPER_BLOCK = new CropBlockAge3(FabricBlockSettings.copy(Blocks.WHEAT));
 
     public static void block(Block block, String path) {
+        block(block, path, new FabricItemSettings());
+    }
+
+    public static void block(Block block, String path, Item.Settings itemSettings) {
         Registry.register(Registries.BLOCK, Identifier.of("gcm", path), block);
-        Registry.register(Registries.ITEM, Identifier.of("gcm", path), new BlockItem(block, new FabricItemSettings()));
+        Registry.register(Registries.ITEM, Identifier.of("gcm", path), new BlockItem(block, itemSettings));
     }
 
     public static void register() {
@@ -50,5 +60,7 @@ public class GBlocks {
         block(PURPLE_LAMP, "purple_lamp");
         block(MAGENTA_LAMP, "magenta_lamp");
         block(PINK_LAMP, "pink_lamp");
+        block(PEPPER_BLOCK, "pepper", new FabricItemSettings().food(new FoodComponent.Builder().saturationModifier(3)
+                .hunger(4).statusEffect(new StatusEffectInstance(GStatusEffects.SPICY, 1200, 2), 0.9f).build()));
     }
 }

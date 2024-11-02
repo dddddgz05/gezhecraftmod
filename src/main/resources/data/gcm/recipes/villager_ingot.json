@@ -1,0 +1,17 @@
+{
+  "type": "crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gcm:villager_nugget"
+    }
+  },
+  "result": {
+    "item": "gcm:villager_ingot"
+  }
+}

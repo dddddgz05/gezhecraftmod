@@ -32,7 +32,7 @@ public class GStatusEffects {
     }
 
     public static void register() {
-        effect(LET_OTHER_SEE_YOU, "let_other_see_you_effect");
+        effect(LET_OTHER_SEE_YOU, "let_other_see_you");
         potion(LET_OTHER_SEE_YOU_P, "let_other_see_you");
         effect(SPICY, "spicy");
     }

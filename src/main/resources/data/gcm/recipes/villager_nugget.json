@@ -2,16 +2,14 @@
   "type": "crafting_shaped",
   "category": "misc",
   "pattern": [
-    "###",
-    "###",
-    "###"
+    "#"
   ],
   "key": {
     "#": {
-      "item": "minecraft:cobblestone"
+      "item": "gcm:villager_ingot"
     }
   },
   "result": {
-    "item": "gcm:better_furnace"
+    "item": "gcm:villager_nugget"
   }
 }

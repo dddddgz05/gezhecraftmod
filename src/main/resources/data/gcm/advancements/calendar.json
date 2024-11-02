@@ -1,11 +1,11 @@
 {
-  "background": "minecraft:textures/block/yellow_wool.png",
+  "parent": "gcm:root",
   "criteria": {
     "get": {
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:logs"
+            "items": ["gcm:calendar"]
           }
         ]
       },
@@ -14,13 +14,13 @@
   },
   "display": {
     "title": {
-      "translate": "advancements.gcm.root.title"
+      "translate": "advancements.gcm.calendar.title"
     },
     "description": {
-      "translate": "advancements.gcm.root.description"
+      "translate": "advancements.gcm.calendar.description"
     },
     "icon": {
-      "item": "minecraft:oak_log"
+      "item": "gcm:calendar"
     }
   },
   "requirements": [

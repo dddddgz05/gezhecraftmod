@@ -23,11 +23,6 @@ public class CalendarItem extends Item {
             String dateString = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
             user.sendMessage(Text.translatable("message.item.gcm.calendar.open").formatted(Formatting.ITALIC).formatted(Formatting.GRAY));
             user.sendMessage(Text.translatable("message.item.gcm.calendar.date", dateString).formatted(Formatting.BOLD));
-            if (dateString.endsWith("10-24")) {
-                user.sendMessage(Text.literal("程序员节快乐！Happy programmer's day!"));
-            } else if (dateString.endsWith("10-25")) {
-                user.sendMessage(Text.literal("来自昨天的消息：Message from yesterday: 程序员节快乐！Happy programmer's day!"));
-            }
             user.sendMessage(Text.translatable("message.item.gcm.calendar.close").formatted(Formatting.ITALIC).formatted(Formatting.GRAY));
             return TypedActionResult.success(user.getStackInHand(hand));
         }

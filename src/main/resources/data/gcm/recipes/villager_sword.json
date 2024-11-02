@@ -1,0 +1,20 @@
+{
+  "type": "crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "V",
+    "V",
+    "S"
+  ],
+  "key": {
+    "V": {
+      "item": "gcm:villager_ingot"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "gcm:villager_sword"
+  }
+}

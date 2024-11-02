@@ -1,0 +1,20 @@
+{
+  "type": "crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "###",
+    "#B#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "gcm:pepper"
+    },
+    "B": {
+      "item": "minecraft:black_dye"
+    }
+  },
+  "result": {
+    "item": "gcm:spicier_pepper"
+  }
+}

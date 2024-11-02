@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "gcm:better_furnace",
     "gcm:experience_block",
     "gcm:chat_block"
   ]

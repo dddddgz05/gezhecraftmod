@@ -1,5 +1,4 @@
 {
-  "background": "minecraft:textures/block/yellow_wool.png",
   "criteria": {
     "get": {
       "conditions": {
@@ -13,6 +12,7 @@
     }
   },
   "display": {
+    "background": "gcm:textures/gui/advancements/backgrounds/root.png",
     "title": {
       "translate": "advancements.gcm.root.title"
     },

@@ -12,8 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 
-public class NoKeepInventoryEnchantment extends Enchantment {
-    public NoKeepInventoryEnchantment(Rarity rarity, EnchantmentTarget target, EquipmentSlot[] slotTypes) {
+public class DropItemsEnchantment extends Enchantment {
+    public DropItemsEnchantment(Rarity rarity, EnchantmentTarget target, EquipmentSlot[] slotTypes) {
         super(rarity, target, slotTypes);
     }
 

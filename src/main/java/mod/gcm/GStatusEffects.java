@@ -31,7 +31,7 @@ public class GStatusEffects {
         Registry.register(Registries.POTION, Identifier.of("gcm", path), potion);
     }
 
-    public static void register() {
+    public static void effect() {
         effect(LET_OTHER_SEE_YOU, "let_other_see_you");
         potion(LET_OTHER_SEE_YOU_P, "let_other_see_you");
         effect(SPICY, "spicy");

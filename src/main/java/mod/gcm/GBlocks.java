@@ -1,13 +1,14 @@
 package mod.gcm;
 
-import mod.gcm.blocks.CropBlockAge3;
+import mod.gcm.blocks.ChatBlock;
+import mod.gcm.blocks.PepperBlock;
+import mod.gcm.blocks.ExperienceBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.RedstoneLampBlock;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
@@ -32,18 +33,20 @@ public class GBlocks {
     public static Block PURPLE_LAMP = new RedstoneLampBlock(FabricBlockSettings.copy(Blocks.REDSTONE_LAMP));
     public static Block MAGENTA_LAMP = new RedstoneLampBlock(FabricBlockSettings.copy(Blocks.REDSTONE_LAMP));
     public static Block PINK_LAMP = new RedstoneLampBlock(FabricBlockSettings.copy(Blocks.REDSTONE_LAMP));
-    public static Block PEPPER_BLOCK = new CropBlockAge3(FabricBlockSettings.copy(Blocks.WHEAT));
+    public static Block PEPPER_BLOCK = new PepperBlock(FabricBlockSettings.copy(Blocks.WHEAT));
+    public static Block CHAT_BLOCK = new ChatBlock(FabricBlockSettings.copy(Blocks.SMOOTH_STONE));
+    public static Block EXPERIENCE_BLOCK = new ExperienceBlock(FabricBlockSettings.copy(Blocks.STONE));
 
     public static void block(Block block, String path) {
-        block(block, path, new FabricItemSettings());
+        noItemBlock(block, path);
+        Registry.register(Registries.ITEM, Identifier.of("gcm", path), new BlockItem(block, new FabricItemSettings()));
     }
 
-    public static void block(Block block, String path, Item.Settings itemSettings) {
+    public static void noItemBlock(Block block, String path) {
         Registry.register(Registries.BLOCK, Identifier.of("gcm", path), block);
-        Registry.register(Registries.ITEM, Identifier.of("gcm", path), new BlockItem(block, itemSettings));
     }
 
-    public static void register() {
+    public static void block() {
         block(WHITE_LAMP, "white_lamp");
         block(LIGHT_GRAY_LAMP, "light_gray_lamp");
         block(GRAY_LAMP, "gray_lamp");
@@ -60,7 +63,8 @@ public class GBlocks {
         block(PURPLE_LAMP, "purple_lamp");
         block(MAGENTA_LAMP, "magenta_lamp");
         block(PINK_LAMP, "pink_lamp");
-        block(PEPPER_BLOCK, "pepper", new FabricItemSettings().food(new FoodComponent.Builder().saturationModifier(3)
-                .hunger(4).statusEffect(new StatusEffectInstance(GStatusEffects.SPICY, 1200, 2), 0.9f).build()));
+        block(CHAT_BLOCK, "chat_block");
+        block(EXPERIENCE_BLOCK, "experience_block");
+        noItemBlock(PEPPER_BLOCK, "pepper");
     }
 }

@@ -19,10 +19,8 @@ public class SpicierPepperItem extends Item {
 
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-        if (entity instanceof PlayerEntity) {
-            entity.addStatusEffect(new StatusEffectInstance(GStatusEffects.SPICY, 1200, 5));
-            return ActionResult.SUCCESS;
-        }
-        return ActionResult.FAIL;
+        entity.addStatusEffect(new StatusEffectInstance(GStatusEffects.SPICY, 1200, 5));
+        stack.decrement(1);
+        return ActionResult.CONSUME;
     }
 }

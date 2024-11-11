@@ -1,7 +1,6 @@
 package mod.gcm.blocks;
 
-import mod.gcm.GHelper;
-import mod.gcm.Main;
+import mod.gcm.ID;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
@@ -11,8 +10,8 @@ import net.minecraft.state.property.IntProperty;
 
 import static net.minecraft.state.property.Properties.AGE_3;
 
-public class CropBlockAge3 extends CropBlock {
-    public CropBlockAge3(Settings settings) {
+public class PepperBlock extends CropBlock {
+    public PepperBlock(Settings settings) {
         super(settings);
         setDefaultState(getDefaultState().with(AGE_3, 0));
     }
@@ -34,6 +33,6 @@ public class CropBlockAge3 extends CropBlock {
 
     @Override
     protected ItemConvertible getSeedsItem() {
-        return GHelper.getItem("gcm:pepper");
+        return ID.item("gcm:pepper");
     }
 }

@@ -1,6 +1,5 @@
 package mod.gcm;
 
-import net.fabricmc.yarn.constants.MiningLevels;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.util.Lazy;
@@ -8,7 +7,7 @@ import net.minecraft.util.Lazy;
 import java.util.function.Supplier;
 
 public enum GToolMaterials implements ToolMaterial {
-    VILLAGER(MiningLevels.STONE, 192, 4f, 0f, 0, () -> Ingredient.ofItems(GItems.VILLAGER_INGOT));
+    VILLAGER(1, 100, 4f, 1f, 5, () -> Ingredient.ofItems(GItems.VILLAGER_INGOT));
 
     // 直接copy ToolMaterials的
     private final int miningLevel;
@@ -18,7 +17,7 @@ public enum GToolMaterials implements ToolMaterial {
     private final int enchantability;
     private final Lazy<Ingredient> repairIngredient;
 
-    private GToolMaterials(int miningLevel, int itemDurability, float miningSpeed, float attackDamage, int enchantability, Supplier<Ingredient> repairIngredient) {
+    GToolMaterials(int miningLevel, int itemDurability, float miningSpeed, float attackDamage, int enchantability, Supplier<Ingredient> repairIngredient) {
         this.miningLevel = miningLevel;
         this.itemDurability = itemDurability;
         this.miningSpeed = miningSpeed;
